@@ -34,38 +34,39 @@
       "Set quantitative goals (e.g., number of leads, interviews, or follow-ups)",
       "Reviewed last year’s GHC feedback and lessons learned",
       "Posted a “See you at #GHC2025!” update on LinkedIn",
-      "Practiced answering top candidate questions (“Do you sponsor international students?” “What roles are open?”)"
+      "Practiced answering top candidate questions (“Do you sponsor international students?” “ What roles are open?”)",
+      "Visited <a href='https://jameelakauser.wstd.io/' target='_blank'>jameelakauser.wstd.io</a> or <a href='https://www.linkedin.com/in/jameela-kauser/' target='_blank'>Jameela Kauser’s LinkedIn</a>"
     ];
 
-    const grid = document.getElementById("grid");
-    const toast = document.getElementById("toast");
-    const reset = document.getElementById("reset");
+    const grid=document.getElementById("grid");
+    const toast=document.getElementById("toast");
+    const reset=document.getElementById("reset");
 
-    function render() {
-      grid.innerHTML = "";
-      PROMPTS.forEach((text, i) => {
-        const c = document.createElement("div");
-        c.className = "cell";
-        c.innerHTML = `<span>${text}</span>`;
-        c.onclick = () => toggle(c, i);
+    function render(){
+      grid.innerHTML="";
+      PROMPTS.forEach((text,i)=>{
+        const c=document.createElement("div");
+        c.className="cell";
+        c.innerHTML=`<span>${text}</span>`;
+        c.onclick=()=>toggle(c,i);
         grid.appendChild(c);
       });
     }
 
-    const marks = new Set();
-    function toggle(cell, idx) {
-      if (marks.has(idx)) { marks.delete(idx); cell.classList.remove("checked"); }
-      else { marks.add(idx); cell.classList.add("checked"); }
-      if (marks.size === PROMPTS.length) showToast("Bingo! You’re fully prepped! 🎉");
+    const marks=new Set();
+    function toggle(cell,idx){
+      if(marks.has(idx)){marks.delete(idx);cell.classList.remove("checked");}
+      else{marks.add(idx);cell.classList.add("checked");}
+      if(marks.size===PROMPTS.length)showToast("Bingo! You’re fully prepped! 🎉");
     }
 
     function showToast(msg){
-      toast.textContent = msg; toast.style.display="block";
+      toast.textContent=msg;toast.style.display="block";
       clearTimeout(showToast._t);
       showToast._t=setTimeout(()=>toast.style.display="none",2500);
     }
 
-    reset.onclick = ()=>{marks.clear();document.querySelectorAll(".cell").forEach(c=>c.classList.remove("checked"))};
+    reset.onclick=()=>{marks.clear();document.querySelectorAll(".cell").forEach(c=>c.classList.remove("checked"));};
 
     render();
   </script>
